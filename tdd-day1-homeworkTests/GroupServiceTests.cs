@@ -40,6 +40,7 @@ namespace tdd_day1_homeworkTests
         {
             // Arrange
             var pagingSize = 3;
+            var sumField = "Cost";
             var dataDao = Substitute.For<IDataDao>();
             dataDao.GetData().Returns(testData);
             var expected = new int[] { 6, 15, 24, 21 };
@@ -47,7 +48,7 @@ namespace tdd_day1_homeworkTests
             var target = new GroupService(dataDao);
 
             // Act
-            var actual = target.GetPagingData(pagingSize);
+            var actual = target.GetPagingData(pagingSize, sumField);
 
             // Assert
             expected.ToExpectedObject().ShouldEqual(actual);
@@ -58,6 +59,7 @@ namespace tdd_day1_homeworkTests
         {
             // Arrange
             var pagingSize = 4;
+            var sumField = "Revenue";
             var dataDao = Substitute.For<IDataDao>();
             dataDao.GetData().Returns(testData);
             var expected = new int[] { 50, 66, 60 };
@@ -65,7 +67,7 @@ namespace tdd_day1_homeworkTests
             var target = new GroupService(dataDao);
 
             // Act
-            var actual = target.GetPagingData(pagingSize);
+            var actual = target.GetPagingData(pagingSize, sumField);
 
             // Assert
             expected.ToExpectedObject().ShouldEqual(actual);
