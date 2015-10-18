@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDao.cs" />
     <Compile Include="GroupService.cs" />
     <Compile Include="IDataDao.cs" />
     <Compile Include="ProductInfo.cs" />

@@ -12,8 +12,26 @@ namespace tdd_day1_homeworkTests
     {
         private static IList<ProductInfo> testData;
 
+        //private TestContext testContextInstance;
+
+        ///// <summary>
+        /////取得或設定提供目前測試回合
+        /////的相關資訊與功能的測試內容。
+        /////</summary>
+        //public TestContext TestContext
+        //{
+        //    get
+        //    {
+        //        return testContextInstance;
+        //    }
+        //    set
+        //    {
+        //        testContextInstance = value;
+        //    }
+        //}
+
         [ClassInitialize()]
-        public static void MyClassInitialize()
+        public static void MyClassInitialize(TestContext TestContext)
         {
             testData = new List<ProductInfo>();
             testData.Add(new ProductInfo { Id = 1, Cost = 1, Revenue = 11, SellPrice = 21 });
@@ -43,7 +61,7 @@ namespace tdd_day1_homeworkTests
             var sumField = "Cost";
             var dataDao = Substitute.For<IDataDao>();
             dataDao.GetData().Returns(testData);
-            var expected = new int[] { 6, 15, 24, 21 };
+            var expected = new List<int> { 6, 15, 24, 21 };
 
             var target = new GroupService(dataDao);
 
@@ -62,7 +80,7 @@ namespace tdd_day1_homeworkTests
             var sumField = "Revenue";
             var dataDao = Substitute.For<IDataDao>();
             dataDao.GetData().Returns(testData);
-            var expected = new int[] { 50, 66, 60 };
+            var expected = new List<int> { 50, 66, 60 };
 
             var target = new GroupService(dataDao);
 
