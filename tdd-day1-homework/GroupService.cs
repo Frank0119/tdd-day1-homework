@@ -14,7 +14,7 @@ namespace tdd_day1_homework
             _dataDao = dataDao;
         }
 
-        public IList<int> GetPagingData(int pagingSize, string sumField)
+        public IList<int> GetPagingData(int pagingSize, Func<ProductInfo, int> selector)
         {
             IList<int> result = new List<int>();
             var data = this._dataDao.GetData();
@@ -22,16 +22,7 @@ namespace tdd_day1_homework
 
             for (int i = 0; i < page; i++)
             {
-                var temp = sumField == "Cost";
-                switch (sumField)
-                {
-                    case "Cost":
-                        result.Add(data.Skip(i * pagingSize).Take(pagingSize).Sum(x => x.Cost));
-                        break;
-                    case "Revenue":
-                        result.Add(data.Skip(i * pagingSize).Take(pagingSize).Sum(x => x.Revenue));
-                        break;
-                }
+                result.Add(data.Skip(i * pagingSize).Take(pagingSize).Sum(selector));
             }
 
             return result;
